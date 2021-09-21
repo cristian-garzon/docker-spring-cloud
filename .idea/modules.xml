@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/docker-spring-cloud.iml" filepath="$PROJECT_DIR$/.idea/docker-spring-cloud.iml" />
+      <module fileurl="file://$PROJECT_DIR$/microservice-items/microservice-items.iml" filepath="$PROJECT_DIR$/microservice-items/microservice-items.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-boot-products/spring-boot-products.iml" filepath="$PROJECT_DIR$/spring-boot-products/spring-boot-products.iml" />
     </modules>
   </component>
 </project>
