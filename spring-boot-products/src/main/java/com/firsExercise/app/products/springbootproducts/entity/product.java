@@ -11,8 +11,9 @@ public class product  {
     private long id;
     private String name;
     private double price;
+    @Column(name = "create_at")
     @Temporal(TemporalType.DATE)
-    private Date dateCreate;
+    private Date createAt;
 
     public void setId(long id) {
         this.id = id;
@@ -27,7 +28,7 @@ public class product  {
     }
 
     public void setDateCreate(Date dateCreate) {
-        this.dateCreate = dateCreate;
+        this.createAt = dateCreate;
     }
 
     public long getId() {
@@ -43,7 +44,7 @@ public class product  {
     }
 
     public Date getDateCreate() {
-        return dateCreate;
+        return createAt;
     }
 
 }

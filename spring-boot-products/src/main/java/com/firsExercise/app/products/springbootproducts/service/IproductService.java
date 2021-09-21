@@ -8,5 +8,5 @@ import org.springframework.transaction.annotation.Transactional;
 
 public interface IproductService {
     public List<product> findAll();
-    public Optional<product> findById(Long id);
+    public product findById(Long id);
 }
