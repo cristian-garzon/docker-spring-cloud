@@ -15,6 +15,17 @@ public class product  {
     @Temporal(TemporalType.DATE)
     private Date createAt;
 
+    @Transient
+    private int port;
+
+    public void setPort(int port) {
+        this.port = port;
+    }
+
+    public int getPort() {
+        return port;
+    }
+
     public void setId(long id) {
         this.id = id;
     }

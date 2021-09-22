@@ -9,6 +9,15 @@ public class Product {
     private String name;
     private Date createAt;
 
+    public void setPort(int port) {
+        this.port = port;
+    }
+
+    public int getPort() {
+        return port;
+    }
+
+    private int port;
     public void setId(Long id) {
         this.id = id;
     }
