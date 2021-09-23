@@ -7,16 +7,19 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="microservice-items" />
+        <module name="microservice-eureka" />
         <module name="spring-boot-products" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="microservice-eureka" target="11" />
       <module name="microservice-items" target="11" />
       <module name="spring-boot-products" target="11" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="microservice-eureka" options="-parameters" />
       <module name="microservice-items" options="-parameters" />
       <module name="spring-boot-products" options="-parameters" />
     </option>
