@@ -1,11 +1,16 @@
 package com.springdocker.app.item.controller;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.springdocker.app.item.entity.Item;
+import com.springdocker.app.item.entity.Product;
 import com.springdocker.app.item.service.IItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Date;
 
 @RestController
 public class ItemController {
@@ -18,9 +23,20 @@ public class ItemController {
         return ResponseEntity.ok().body(itemService.list());
     }
 
+    @HystrixCommand(fallbackMethod = "alternativeMethod")
     @GetMapping("/find/{id}/size/{size}")
     public ResponseEntity<?> find(@PathVariable Long id, @PathVariable Integer size){
-        if (itemService.find(id,size) == null) return ResponseEntity.noContent().build();
         return ResponseEntity.ok().body(itemService.find(id,size));
+    }
+
+    public ResponseEntity<?> alternativeMethod(Long id, Integer size){
+        Item item = new Item();
+        Product product = new Product();
+        item.setSize(size);
+        product.setCreateAt(new Date());
+        product.setName("product default");
+        product.setPrice(0);
+        item.setProduct(product);
+        return ResponseEntity.ok().body(item);
     }
 }
