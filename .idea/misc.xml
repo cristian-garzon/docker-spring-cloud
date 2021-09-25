@@ -6,6 +6,7 @@
         <option value="$PROJECT_DIR$/microservice-items/pom.xml" />
         <option value="$PROJECT_DIR$/spring-boot-products/pom.xml" />
         <option value="$PROJECT_DIR$/microservice-eureka/pom.xml" />
+        <option value="$PROJECT_DIR$/microservice-zuul/pom.xml" />
       </list>
     </option>
   </component>
