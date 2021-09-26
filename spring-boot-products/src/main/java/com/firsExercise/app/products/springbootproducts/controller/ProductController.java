@@ -33,6 +33,11 @@ public class ProductController {
     public ResponseEntity<?> find(@PathVariable Long id){
         product product = service.findById(id);
         if(product == null) throw new RuntimeException("product not found :c");
+        try {
+         Thread.sleep(20000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
         product.setPort(Integer.parseInt(env.getProperty("local.server.port")));
         return  ResponseEntity.ok().body(product);
     }
