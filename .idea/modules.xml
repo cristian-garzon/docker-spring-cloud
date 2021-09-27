@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/microservice-eureka/microservice-eureka.iml" filepath="$PROJECT_DIR$/microservice-eureka/microservice-eureka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/microservice-gateway/microservice-gateway.iml" filepath="$PROJECT_DIR$/microservice-gateway/microservice-gateway.iml" />
       <module fileurl="file://$PROJECT_DIR$/microservice-items/microservice-items.iml" filepath="$PROJECT_DIR$/microservice-items/microservice-items.iml" />
       <module fileurl="file://$PROJECT_DIR$/microservice-zuul/microservice-zuul.iml" filepath="$PROJECT_DIR$/microservice-zuul/microservice-zuul.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-boot-products/spring-boot-products.iml" filepath="$PROJECT_DIR$/spring-boot-products/spring-boot-products.iml" />
