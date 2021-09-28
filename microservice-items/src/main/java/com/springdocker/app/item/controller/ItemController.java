@@ -6,9 +6,7 @@ import com.springdocker.app.item.entity.Product;
 import com.springdocker.app.item.service.IItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 
@@ -39,4 +37,5 @@ public class ItemController {
         item.setProduct(product);
         return ResponseEntity.ok().body(item);
     }
+
 }
