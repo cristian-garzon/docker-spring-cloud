@@ -32,7 +32,7 @@ public class ProductController {
     @GetMapping("/find/{id}")
     public ResponseEntity<?> find(@PathVariable Long id){
         product product = service.findById(id);
-        if(product == null) throw new RuntimeException("product not found :c");
+        if(product == null) throw new IllegalStateException("product not found :c");
         product.setPort(Integer.parseInt(env.getProperty("local.server.port")));
         return  ResponseEntity.ok().body(product);
     }
