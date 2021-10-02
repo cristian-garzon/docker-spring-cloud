@@ -30,7 +30,8 @@ public class ItemController {
 
     @GetMapping("/find/{id}/size/{size}")
     public ResponseEntity<?> find(@PathVariable Long id, @PathVariable Integer size){
-        return ResponseEntity.ok().body(circuitBreakerFactory.create("item").run(() -> itemService.find(id,size),error -> alternativeMethod(id, size,error).getBody()));
+        return ResponseEntity.ok().body(circuitBreakerFactory.create("item").run(() -> itemService.find(id,size),
+                error -> alternativeMethod(id, size,error).getBody()));
     }
 
     public ResponseEntity<?> alternativeMethod(Long id, Integer size, Throwable error){
