@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 @RestController
@@ -29,9 +31,10 @@ public class ProductController {
     }
 
     @GetMapping("/find/{id}")
-    public ResponseEntity<?> find(@PathVariable Long id){
+    public ResponseEntity<?> find(@PathVariable Long id) throws InterruptedException {
         product product = service.findById(id);
         if(product == null) throw new IllegalStateException("product not found :c");
+        TimeUnit.SECONDS.sleep(5L);
         product.setPort(Integer.parseInt(env.getProperty("local.server.port")));
         return  ResponseEntity.ok().body(product);
     }
