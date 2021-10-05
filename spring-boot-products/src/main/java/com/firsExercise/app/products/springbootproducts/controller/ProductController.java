@@ -34,7 +34,6 @@ public class ProductController {
     public ResponseEntity<?> find(@PathVariable Long id) throws InterruptedException {
         product product = service.findById(id);
         if(product == null) throw new IllegalStateException("product not found :c");
-        TimeUnit.SECONDS.sleep(5L);
         product.setPort(Integer.parseInt(env.getProperty("local.server.port")));
         return  ResponseEntity.ok().body(product);
     }
