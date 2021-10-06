@@ -13,7 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
-import java.util.concurrent.CompletableFuture;
+import java.util.jar.JarOutputStream;
 
 @RestController
 public class ItemController {
@@ -33,27 +33,20 @@ public class ItemController {
 
     @GetMapping("/find/{id}/size/{size}")
     public ResponseEntity<?> find(@PathVariable Long id, @PathVariable Integer size){
-        return ResponseEntity.ok().body(circuitBreakerFactory.create("item").run(() -> itemService.find(id,size),
-                error -> alternativeMethod(id, size,error)));
+        return ResponseEntity.ok().body(itemService.find(id,size));
     }
 
-    public CompletableFuture<Item> alternativeMethod(Long id, Integer size, Throwable error){
-        logger.info(error.getMessage());
+    @GetMapping("/alternative")
+    public ResponseEntity<?> alternativeMethod (){
+        System.out.println("debug");
         Item item = new Item();
         Product product = new Product();
-        item.setSize(size);
+        item.setSize(0);
         product.setCreateAt(new Date());
         product.setName("product default");
         product.setPrice(0);
         item.setProduct(product);
-        return CompletableFuture.supplyAsync(() -> item);
+        return  ResponseEntity.ok().body(item);
     }
 
-    @CircuitBreaker(name = "items",fallbackMethod = "alternativeMethod")
-    @TimeLimiter(name = "items")
-    @GetMapping("/find2/{id}/size/{size}")
-    public CompletableFuture<Item> find2(@PathVariable Long id, @PathVariable Integer size){
-        return CompletableFuture.supplyAsync(() -> itemService.find(id,size));
-
-    }
 }
