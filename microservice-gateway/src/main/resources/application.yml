@@ -1,0 +1,41 @@
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        sliding-window-size: 8
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 15s
+        permitted-number-of-calls-in-half-open-state: 10
+        slow-call-rate-threshold: 50
+        slow-call-duration-threshold: 3s
+    instances:
+      product:
+        base-config: default
+  timelimiter:
+    configs:
+      default:
+        timeout-duration: 2s
+    instances:
+      product:
+        base-config: default
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: microservice-product
+          uri: lb://microservice-product
+          predicates:
+            - Path=/api/Product/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: product
+                fallbackUri: forward:/api/Item/alternative
+                statusCodes: 500
+            - StripPrefix=2
+        - id: microservice-item
+          uri: lb://microservice-item
+          predicates:
+            - Path=/api/Item/**
+          filters:
+            - StripPrefix=2
