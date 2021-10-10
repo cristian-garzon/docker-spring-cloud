@@ -1,9 +1,9 @@
 package com.firsExercise.app.products.springbootproducts.repository;
 
-import com.firsExercise.app.products.springbootproducts.entity.product;
+import com.springdocker.cammons.product.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 
-public interface productRepo extends JpaRepository<product, Long> {
+public interface productRepo extends JpaRepository<Product, Long> {
 }
 

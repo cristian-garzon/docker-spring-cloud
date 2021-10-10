@@ -8,13 +8,15 @@
         <outputRelativeToContentRoot value="true" />
         <module name="microservice-gateway" />
         <module name="microservice-config-server" />
-        <module name="spring-boot-products" />
+        <module name="cammons-product" />
         <module name="microservice-zuul" />
+        <module name="spring-boot-products" />
         <module name="microservice-items" />
         <module name="microservice-eureka" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="cammons-product" target="11" />
       <module name="microservice-config-server" target="11" />
       <module name="microservice-eureka" target="11" />
       <module name="microservice-gateway" target="11" />
@@ -25,6 +27,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="cammons-product" options="-parameters" />
       <module name="microservice-config-server" options="-parameters" />
       <module name="microservice-eureka" options="-parameters" />
       <module name="microservice-gateway" options="-parameters" />

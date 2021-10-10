@@ -1,5 +1,7 @@
 package com.springdocker.app.item.entity;
 
+import com.springdocker.cammons.product.entity.Product;
+
 public class Item {
     private Product product;
     private Integer size;

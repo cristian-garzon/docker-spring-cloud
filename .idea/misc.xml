@@ -9,6 +9,7 @@
         <option value="$PROJECT_DIR$/microservice-zuul/pom.xml" />
         <option value="$PROJECT_DIR$/microservice-gateway/pom.xml" />
         <option value="$PROJECT_DIR$/microservice-config-server/pom.xml" />
+        <option value="$PROJECT_DIR$/cammons-product/pom.xml" />
       </list>
     </option>
   </component>

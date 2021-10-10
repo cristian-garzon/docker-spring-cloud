@@ -1,11 +1,10 @@
-package com.firsExercise.app.products.springbootproducts.entity;
-
+package com.springdocker.cammons.product.entity;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-public class product  {
+public class Product  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

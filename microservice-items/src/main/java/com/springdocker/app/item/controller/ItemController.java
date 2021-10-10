@@ -1,12 +1,9 @@
 package com.springdocker.app.item.controller;
 
 import com.springdocker.app.item.entity.Item;
-import com.springdocker.app.item.entity.Product;
 import com.springdocker.app.item.service.IItemService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.springdocker.cammons.product.entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
@@ -43,7 +40,7 @@ public class ItemController {
         Item item = new Item();
         Product product = new Product();
         item.setSize(0);
-        product.setCreateAt(new Date());
+        product.setDateCreate(new Date());
         product.setName("product default");
         product.setPrice(0);
         item.setProduct(product);

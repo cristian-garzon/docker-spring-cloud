@@ -1,7 +1,7 @@
 package com.springdocker.app.item.service;
 
 import com.springdocker.app.item.entity.Item;
-import com.springdocker.app.item.entity.Product;
+import com.springdocker.cammons.product.entity.Product;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
 package com.firsExercise.app.products.springbootproducts.service;
 
-import com.firsExercise.app.products.springbootproducts.entity.product;
 import com.firsExercise.app.products.springbootproducts.repository.productRepo;
+import com.springdocker.cammons.product.entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,19 +16,19 @@ public class IProductServiceImpl implements IproductService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<product> findAll() {
+    public List<Product> findAll() {
         return productRepo.findAll();
     }
 
     @Override
     @Transactional(readOnly = true)
-    public product findById(Long id) {
+    public Product findById(Long id) {
         return productRepo.findById(id).orElse(null);
     }
 
     @Override
     @Transactional
-    public product save(product product) {
+    public Product save(Product product) {
         return productRepo.save(product);
     }
 

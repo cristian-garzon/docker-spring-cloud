@@ -1,7 +1,7 @@
 package com.firsExercise.app.products.springbootproducts.controller;
 
-import com.firsExercise.app.products.springbootproducts.entity.product;
 import com.firsExercise.app.products.springbootproducts.service.IproductService;
+import com.springdocker.cammons.product.entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
@@ -29,19 +29,19 @@ public class ProductController {
 
     @GetMapping("/find/{id}")
     public ResponseEntity<?> find(@PathVariable Long id) throws InterruptedException {
-        product product = service.findById(id);
+        Product product = service.findById(id);
         if(product == null) throw new IllegalStateException("product not found :c");
         product.setPort(Integer.parseInt(env.getProperty("local.server.port")));
         return  ResponseEntity.ok().body(product);
     }
     @PostMapping("/save")
-    public ResponseEntity<product> save(@RequestBody product product){
+    public ResponseEntity<Product> save(@RequestBody Product product){
         return ResponseEntity.status(HttpStatus.CREATED).body(service.save(product));
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<product> update(@RequestBody product product, @PathVariable Long id){
-        product product1Update = service.findById(id);
+    public ResponseEntity<Product> update(@RequestBody Product product, @PathVariable Long id){
+        Product product1Update = service.findById(id);
         if(product == null) return ResponseEntity.notFound().build();
         product1Update.setPrice(product.getPrice());
         product1Update.setName(product.getName());

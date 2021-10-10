@@ -2,7 +2,7 @@ package com.springdocker.app.item.service;
 
 import com.springdocker.app.item.clients.ProductClient;
 import com.springdocker.app.item.entity.Item;
-import com.springdocker.app.item.entity.Product;
+import com.springdocker.cammons.product.entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

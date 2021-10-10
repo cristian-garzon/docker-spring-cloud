@@ -1,6 +1,6 @@
 package com.springdocker.app.item.clients;
 
-import com.springdocker.app.item.entity.Product;
+import com.springdocker.cammons.product.entity.Product;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

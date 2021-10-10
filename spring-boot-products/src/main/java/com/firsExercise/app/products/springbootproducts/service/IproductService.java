@@ -2,11 +2,11 @@ package com.firsExercise.app.products.springbootproducts.service;
 
 import java.util.List;
 
-import com.firsExercise.app.products.springbootproducts.entity.product;
+import com.springdocker.cammons.product.entity.Product;
 
 public interface IproductService {
-    public List<product> findAll();
-    public product findById(Long id);
-    public product save(product product);
+    public List<Product> findAll();
+    public Product findById(Long id);
+    public Product save(Product product);
     public void delete(Long id);
 }
