@@ -7,4 +7,6 @@ import com.firsExercise.app.products.springbootproducts.entity.product;
 public interface IproductService {
     public List<product> findAll();
     public product findById(Long id);
+    public product save(product product);
+    public void delete(Long id);
 }

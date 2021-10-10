@@ -4,6 +4,7 @@ import com.firsExercise.app.products.springbootproducts.entity.product;
 import com.firsExercise.app.products.springbootproducts.repository.productRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -14,12 +15,26 @@ public class IProductServiceImpl implements IproductService {
     private productRepo productRepo;
 
     @Override
+    @Transactional(readOnly = true)
     public List<product> findAll() {
         return productRepo.findAll();
     }
 
     @Override
+    @Transactional(readOnly = true)
     public product findById(Long id) {
         return productRepo.findById(id).orElse(null);
+    }
+
+    @Override
+    @Transactional
+    public product save(product product) {
+        return productRepo.save(product);
+    }
+
+    @Override
+    @Transactional
+    public void delete(Long id) {
+        productRepo.deleteById(id);
     }
 }

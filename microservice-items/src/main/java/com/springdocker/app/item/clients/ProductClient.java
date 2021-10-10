@@ -2,8 +2,8 @@ package com.springdocker.app.item.clients;
 
 import com.springdocker.app.item.entity.Product;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -15,4 +15,14 @@ public interface ProductClient {
 
     @GetMapping("/find/{id}")
     public Product find(@PathVariable Long id);
+
+    @PostMapping("/save")
+    public Product save(@RequestBody Product product);
+
+    @PutMapping("/update/{id}")
+    public Product update(@RequestBody Product product, @PathVariable Long id);
+
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> delete(@PathVariable Long id);
 }

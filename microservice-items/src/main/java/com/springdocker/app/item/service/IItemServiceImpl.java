@@ -2,6 +2,7 @@ package com.springdocker.app.item.service;
 
 import com.springdocker.app.item.clients.ProductClient;
 import com.springdocker.app.item.entity.Item;
+import com.springdocker.app.item.entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,5 +25,20 @@ public class IItemServiceImpl implements IItemService{
     @Override
     public Item find(Long id, Integer size) {
         return new Item(productClient.find(id), size);
+    }
+
+    @Override
+    public Product save(Product product) {
+        return productClient.save(product);
+    }
+
+    @Override
+    public Product update(Product product, Long id) {
+        return productClient.update(product,id);
+    }
+
+    @Override
+    public void delete(Long id) {
+        productClient.delete(id);
     }
 }
