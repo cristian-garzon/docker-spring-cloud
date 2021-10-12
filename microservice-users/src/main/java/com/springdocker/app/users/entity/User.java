@@ -26,6 +26,9 @@ public class User implements Serializable {
     private String email;
 
     @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "id_user"),
+                inverseJoinColumns = @JoinColumn(name = "id_role"),
+    uniqueConstraints = {@UniqueConstraint(columnNames = {"id_user","id_role"})})
     private List<Role> roles;
 
     public void setRoles(List<Role> roles) {
