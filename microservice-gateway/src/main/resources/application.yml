@@ -39,3 +39,9 @@ spring:
             - Path=/api/Item/**
           filters:
             - StripPrefix=2
+        - id: microservice-user
+          uri: lb://microservice-user
+          predicates:
+            - Path=/api/User/**
+          filters:
+            - StripPrefix=2
