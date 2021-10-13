@@ -12,6 +12,7 @@
         <option value="$PROJECT_DIR$/cammons-product/pom.xml" />
         <option value="$PROJECT_DIR$/microservice-users/pom.xml" />
         <option value="$PROJECT_DIR$/cammons-user/pom.xml" />
+        <option value="$PROJECT_DIR$/microservice-oauth/pom.xml" />
       </list>
     </option>
   </component>

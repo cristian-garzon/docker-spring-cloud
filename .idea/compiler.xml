@@ -15,6 +15,7 @@
         <module name="microservice-items" />
         <module name="microservice-eureka" />
         <module name="microservice-users" />
+        <module name="microservice-oauth" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -24,6 +25,7 @@
       <module name="microservice-eureka" target="11" />
       <module name="microservice-gateway" target="11" />
       <module name="microservice-items" target="11" />
+      <module name="microservice-oauth" target="11" />
       <module name="microservice-users" target="11" />
       <module name="microservice-zuul" target="11" />
       <module name="spring-boot-products" target="11" />
@@ -37,6 +39,7 @@
       <module name="microservice-eureka" options="-parameters" />
       <module name="microservice-gateway" options="-parameters" />
       <module name="microservice-items" options="-parameters" />
+      <module name="microservice-oauth" options="-parameters" />
       <module name="microservice-users" options="-parameters" />
       <module name="microservice-zuul" options="-parameters" />
       <module name="spring-boot-products" options="-parameters" />
