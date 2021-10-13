@@ -1,4 +1,4 @@
-package com.springdocker.app.users.entity;
+package com.springdocker.cammons.user.entity;
 
 import javax.persistence.*;
 
