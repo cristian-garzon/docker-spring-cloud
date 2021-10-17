@@ -7,10 +7,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="microservice-gateway" />
-        <module name="microservice-config-server" />
         <module name="cammons-product" />
+        <module name="microservice-config-server" />
         <module name="microservice-zuul" />
         <module name="cammons-user" />
+        <module name="microservice-item" />
         <module name="spring-boot-products" />
         <module name="microservice-items" />
         <module name="microservice-eureka" />
@@ -24,6 +25,7 @@
       <module name="microservice-config-server" target="11" />
       <module name="microservice-eureka" target="11" />
       <module name="microservice-gateway" target="11" />
+      <module name="microservice-item" target="11" />
       <module name="microservice-items" target="11" />
       <module name="microservice-oauth" target="11" />
       <module name="microservice-users" target="11" />
@@ -38,6 +40,7 @@
       <module name="microservice-config-server" options="-parameters" />
       <module name="microservice-eureka" options="-parameters" />
       <module name="microservice-gateway" options="-parameters" />
+      <module name="microservice-item" options="-parameters" />
       <module name="microservice-items" options="-parameters" />
       <module name="microservice-oauth" options="-parameters" />
       <module name="microservice-users" options="-parameters" />

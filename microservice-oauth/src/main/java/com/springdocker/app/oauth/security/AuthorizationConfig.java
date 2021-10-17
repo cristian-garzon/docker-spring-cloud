@@ -10,8 +10,11 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
+
+import java.util.Arrays;
 
 @Configuration
 @EnableAuthorizationServer
@@ -19,6 +22,9 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
+
+    @Autowired
+    private InfoAddToken infoAddToken;
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -30,7 +36,6 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        System.out.println("debug 3");
         clients.inMemory().withClient("angularapp").secret(passwordEncoder.encode("12345")).
                 scopes("read","write").authorizedGrantTypes("password", "refresh_token").
                 accessTokenValiditySeconds(3600).refreshTokenValiditySeconds(3600);
@@ -38,10 +43,12 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        System.out.println("debug 4");
+        TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
+        tokenEnhancerChain.setTokenEnhancers(Arrays.asList(infoAddToken,accessTokenConverter()));
         endpoints.authenticationManager(authenticationManager).
                 tokenStore(tokenStore()).
-                accessTokenConverter(accessTokenConverter());
+                accessTokenConverter(accessTokenConverter()).
+                tokenEnhancer(tokenEnhancerChain);
     }
 
     @Bean
