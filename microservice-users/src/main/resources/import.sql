@@ -1,7 +1,7 @@
-insert INTO users (enabled, password, user, name, surname, email) VALUES (true ,'$2a$10$LiXYS2XQH6GP.Z8eeSzZFumqpev.zStDxJ9W1MKptOVB1rPqPphoq','cristian1','cristian','garzon','cristiancamilogarzon2@gmail.com');
-insert INTO users (enabled, password, user, name, surname, email) VALUES (false,'$2a$10$Z5Cljz.0nNA0DYm1vg9NK.mlxvLyHPT9QExiysrEkckiYV1qq0PjK','camilo1','camilo','rodriguez','camilo@gmail.com');
-insert INTO users (enabled, password, user, name, surname, email) VALUES (false,'$2a$10$FKoL55KlGojAGhUJkaoXV.E5.xifLyVITSd4O7YXUmvMyrecFaGrG','cristian','garzon','cristian','cristiancamilogarzon@ucundinamarca.edu.co');
-insert INTO users (enabled, password, user, name, surname, email) VALUES (true,'$2a$10$Am2dYTxcsEwK6njvDdJC/eM7aH3McNnsyQ/DBdD.OPuqiwwhvlmyq','camilo2','rodriguez','camilo','camilo@ucundinamarca.edu.co');
+insert INTO users (enabled, password, username, name, surname, email) VALUES (true ,'$2a$10$VmqRkHaNxCt179fPyfTvQ.1UdWvD/my5WGp2wBHDrGW4yvSuL2l.K','cristian1','cristian','garzon','cristiancamilogarzon2@gmail.com');
+insert INTO users (enabled, password, username, name, surname, email) VALUES (false,'$2a$10$U3ilRDFh4t4JrrpABxc6W..qbogGp7NUbKgW5KS7OtIMvdk5q/qci','camilo1','camilo','rodriguez','camilo@gmail.com');
+insert INTO users (enabled, password, username, name, surname, email) VALUES (false,'$2a$10$bBqIY9fPVVi4YeuYSgJW3eKyAS3joYtsGyI1E0xGFsjYz/9nxoRF6','cristian','garzon','cristian','cristiancamilogarzon@ucundinamarca.edu.co');
+insert INTO users (enabled, password, username, name, surname, email) VALUES (true,'$2a$10$4L2/kqt2mCEUlviXMmj7res2xEeGRVbf8PT8KdhKJS0iamLjvqrA6','camilo2','rodriguez','camilo','camilo@ucundinamarca.edu.co');
 
 insert INTO roles (name) VALUES ('ROLE_MOD');
 insert INTO roles (name) VALUES ('ROLE_ADMIN');

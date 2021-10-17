@@ -13,8 +13,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Qualifier("userService")
     @Autowired
+    @Qualifier("userService")
     private UserDetailsService userDetailsService;
 
     @Bean
@@ -26,11 +26,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     @Autowired
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        System.out.println("debu 1");
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
 
-    @Override
     @Bean
+    @Override
     protected AuthenticationManager authenticationManager() throws Exception {
         return super.authenticationManager();
     }
