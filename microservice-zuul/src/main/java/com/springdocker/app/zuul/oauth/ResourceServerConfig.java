@@ -1,7 +1,10 @@
 package com.springdocker.app.zuul.oauth;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
@@ -13,6 +16,9 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 @Configuration
 @EnableResourceServer
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
+
+    @Autowired
+    private Environment env;
 
 
     @Override
@@ -39,7 +45,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     @Bean
     public JwtAccessTokenConverter accessTokenConverter(){
         JwtAccessTokenConverter token = new JwtAccessTokenConverter();
-        token.setSigningKey("secret_key");
+        token.setSigningKey(env.getProperty("config.security.oauth.jwt.key"));
         return token;
     }
 }

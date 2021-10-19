@@ -3,6 +3,7 @@ package com.springdocker.app.oauth.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
@@ -29,6 +30,9 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
     @Autowired
     private AuthenticationManager authenticationManager;
 
+    @Autowired
+    private Environment env;
+
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
         security.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()");
@@ -36,7 +40,8 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        clients.inMemory().withClient("angularapp").secret(passwordEncoder.encode("12345")).
+        clients.inMemory().withClient(env.getProperty("config.security.oauth.client.id")).
+                secret(passwordEncoder.encode(env.getProperty("config.security.oauth.client.secret"))).
                 scopes("read","write").authorizedGrantTypes("password", "refresh_token").
                 accessTokenValiditySeconds(3600).refreshTokenValiditySeconds(3600);
     }
@@ -59,7 +64,7 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
     @Bean
     public JwtAccessTokenConverter accessTokenConverter(){
         JwtAccessTokenConverter token = new JwtAccessTokenConverter();
-        token.setSigningKey("secret_key");
+        token.setSigningKey(env.getProperty("config.security.oauth.jwt.key"));
         return token;
     }
 }
