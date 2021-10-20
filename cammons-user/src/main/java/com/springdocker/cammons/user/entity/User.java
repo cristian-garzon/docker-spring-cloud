@@ -25,6 +25,17 @@ public class User implements Serializable {
     @Column(unique = true)
     private String email;
 
+    public void setLogin(int login) {
+        this.login = login;
+    }
+
+    public int getLogin() {
+        return login;
+    }
+
+    @Transient
+    private int login;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "id_user"),
                 inverseJoinColumns = @JoinColumn(name = "id_role"),
