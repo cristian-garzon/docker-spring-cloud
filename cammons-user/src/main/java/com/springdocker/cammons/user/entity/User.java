@@ -1,6 +1,7 @@
 package com.springdocker.cammons.user.entity;
 
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
 import java.io.Serializable;
 import java.util.List;
 
@@ -25,16 +26,17 @@ public class User implements Serializable {
     @Column(unique = true)
     private String email;
 
-    public void setLogin(int login) {
+    private Integer login;
+
+    public void setLogin(Integer login) {
         this.login = login;
     }
 
-    public int getLogin() {
+    public Integer getLogin() {
         return login;
     }
 
-    @Transient
-    private int login;
+
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "id_user"),

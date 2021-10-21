@@ -1,6 +1,7 @@
 package com.springdocker.app.oauth.service;
 
 import com.springdocker.app.oauth.client.UserFeignClient;
+import feign.FeignException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.GrantedAuthority;
@@ -24,15 +25,23 @@ public class UserService implements UserDetailsService,IuserService {
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        System.out.println("debug");
-         com.springdocker.cammons.user.entity.User user = client.findByUsername(s);
-         if (user == null) throw new UsernameNotFoundException("user not found!");
-        List<GrantedAuthority> authorities = user.getRoles().stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
-         return new User(user.getUsername(), user.getPassword(), user.isEnabled(), true, true, true, authorities);
+        try {
+            com.springdocker.cammons.user.entity.User user = client.findByUsername(s);
+            List<GrantedAuthority> authorities = user.getRoles().stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
+            return new User(user.getUsername(), user.getPassword(), user.isEnabled(), true, true, true, authorities);
+        }catch (FeignException exception){
+            System.out.println("error: " + exception.getMessage());
+            throw new UsernameNotFoundException("user dont found");
+        }
     }
 
     @Override
     public com.springdocker.cammons.user.entity.User findUser(String username) {
         return client.findByUsername(username);
+    }
+
+    @Override
+    public com.springdocker.cammons.user.entity.User update(com.springdocker.cammons.user.entity.User user, Long id) {
+        return client.update(user, id);
     }
 }
