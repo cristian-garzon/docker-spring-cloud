@@ -45,3 +45,9 @@ spring:
             - Path=/api/User/**
           filters:
             - StripPrefix=2
+        - id: microservice-oauth
+          uri: lb://microservice-oauth
+          predicates:
+            - Path=/api/Oauth/**
+          filters:
+            - StripPrefix=2
