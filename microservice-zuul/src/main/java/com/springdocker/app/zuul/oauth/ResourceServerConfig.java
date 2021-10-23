@@ -19,6 +19,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 import java.util.Arrays;
+import java.util.Base64;
 
 @Configuration
 @EnableResourceServer
@@ -72,7 +73,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     @Bean
     public JwtAccessTokenConverter accessTokenConverter(){
         JwtAccessTokenConverter token = new JwtAccessTokenConverter();
-        token.setSigningKey(env.getProperty("config.security.oauth.jwt.key"));
+        token.setSigningKey(Base64.getEncoder().encodeToString(env.getProperty("config.security.oauth.jwt.key").getBytes()));
         return token;
     }
 }
