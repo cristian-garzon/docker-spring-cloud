@@ -21,6 +21,8 @@ import java.util.stream.Collectors;
 @Component
 public class AuthenticationManagerJwt implements ReactiveAuthenticationManager {
 
+
+
     @Autowired
     private Environment env;
 
