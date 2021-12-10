@@ -1,5 +1,6 @@
 package com.springdocker.app.oauth.service;
 
+import brave.Tracer;
 import com.springdocker.app.oauth.client.UserFeignClient;
 import feign.FeignException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,8 @@ public class UserService implements UserDetailsService,IuserService {
     @Autowired
     private UserFeignClient client;
 
+    @Autowired
+    private Tracer tracer;
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
@@ -31,7 +34,8 @@ public class UserService implements UserDetailsService,IuserService {
             return new User(user.getUsername(), user.getPassword(), user.isEnabled(), true, true, true, authorities);
         }catch (FeignException exception){
             System.out.println("error: " + exception.getMessage());
-            throw new UsernameNotFoundException("user dont found");
+            tracer.currentSpan().tag("error-message", "user not found: " + exception.getMessage());
+            throw new UsernameNotFoundException("user not found");
         }
     }
 
