@@ -1,0 +1,116 @@
+version: '3.7'
+services:
+  config-server:
+    image: config-server:v1
+    ports:
+      - "8888:8888"
+    restart: always
+    networks:
+      - curso-spring-cloud
+  eureka-server:
+    image: eureka-server:v1
+    ports:
+      - "8761:8761"
+    restart: always
+    networks:
+      - curso-spring-cloud
+  mysql-spring-cloud:
+    image: mysql:8
+    ports:
+      - "3306:3306"
+    restart: always
+    networks:
+      - curso-spring-cloud
+    environment:
+      MYSQL_DATABASE: productos
+      MYSQL_ALLOW_EMPTY_PASSWORD: yes
+  postgressql-spring:
+    image: postgres:14-alpine
+    ports:
+      - "5432:5432"
+    restart: always
+    networks:
+      - curso-spring-cloud
+    environment:
+      POSTGRES_DB: users  
+      POSTGRES_PASSWORD: root 
+  microservice-product:
+    image: microservice-product:v1
+    restart: always
+    networks:
+      - curso-spring-cloud
+    depends_on:
+      - config-server
+      - eureka-server
+      - mysql-spring-cloud
+  microservice-item:
+    image: microservice-item:v1
+    restart: always
+    networks:
+      - curso-spring-cloud
+    depends_on:
+      - config-server
+      - eureka-server
+      - microservice-product
+  microservice-oauth:
+    image: microservice-oauth:v1
+    restart: always
+    ports:
+      - "9100:9100"
+    networks:
+      - curso-spring-cloud
+    depends_on:
+      - config-server
+      - eureka-server
+      - microservice-user
+  microservice-user:
+    image: microservice-users:v1
+    restart: always
+    networks:
+      - curso-spring-cloud
+    depends_on:
+      - config-server
+      - eureka-server
+      - postgressql-spring 
+  microservice-gateway:
+    image: microservice-gateway:v1
+    restart: always
+    ports:
+      - "8090:8090"
+    networks:
+      - curso-spring-cloud
+    depends_on:
+      - config-server
+      - eureka-server
+      - mysql-spring-cloud
+      - microservice-product
+      - microservice-item
+      - microservice-oauth
+      - microservice-user
+  server-rabbitmq:
+    image: rabbitmq:3.9.11-management-alpine
+    restart: always
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    networks:
+      - curso-spring-cloud
+  zipkin-server:
+    image: zipkin-server:v1
+    ports:
+      - "9411:9411"
+    restart: always
+    networks:
+      - curso-spring-cloud 
+    depends_on:
+      - server-rabbitmq
+      - mysql-spring-cloud
+    environment:
+      RABBIT_ADDRESSES: server-rabbitmq:5672 
+      STORAGE_TYPE: mysql
+      MYSQL_USER: root
+      MYSQL-HOST: mysql-spring-cloud
+
+
+networks:
+  curso-spring-cloud: 
